@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative Art</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div>
+        <label for="ageInput">Age:</label>
+        <input type="text" id="ageInput" placeholder="Enter age (number)">
+    </div>
+    <div>
+        <label for="nameInput">Name:</label>
+        <input type="text" id="nameInput" placeholder="Enter name (text)">
+    </div>
+    <div>
+        <label for="genderInput">Gender:</label>
+        <select id="genderInput">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+    </div>
+    <div>
+        <label for="latInput">Latitude:</label>
+        <input type="text" id="latInput" placeholder="Enter latitude (number)">
+    </div>
+    <div>
+        <label for="lonInput">Longitude:</label>
+        <input type="text" id="lonInput" placeholder="Enter longitude (number)">
+    </div>
+    <div>
+        <label for="dateInput">Start Angle (Date):</label>
+        <input type="text" id="dateInput" placeholder="Enter start angle (number)">
+    </div>
+    <div>
+        <label for="monthInput">End Angle (Month):</label>
+        <input type="text" id="monthInput" placeholder="Enter end angle (number)">
+    </div>
+    <div>
+        <label for="workExInput">Work Experience:</label>
+        <input type="text" id="workExInput" placeholder="Enter work experience (number)">
+    </div>
+    <div>
+        <label for="hobinInput">Hobin:</label>
+        <input type="text" id="hobinInput" placeholder="Enter hobin (number)">
+    </div>
+    <div>
+        <label for="hoboutInput">Hobout:</label>
+        <input type="text" id="hoboutInput" placeholder="Enter hobout (number)">
+    </div>
+    <div>
+        <label for="firstNameInput">First Name:</label>
+        <input type="text" id="firstNameInput" placeholder="Enter first name (text)">
+    </div>
+    <div>
+        <label for="lastNameInput">Last Name:</label>
+        <input type="text" id="lastNameInput" placeholder="Enter last name (text)">
+    </div>
+    <button onclick="generateArt()">Generate Art</button>
+    <br>
+    <canvas id="artCanvas"></canvas>
+    <img id="artImage" src="" alt="Generated Art">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+    <script src="sketch.js"></script>
+    <script>
+        let motif1;
+        let motif2;
+
+        function preload() {
+            motif1 = loadShape("loc.svg");
+            motif2 = loadShape("workexp.svg");
+        }
+
+        function generateArt() {
+            let age = document.getElementById("ageInput").value;
+            let name = document.getElementById("nameInput").value;
+            let gender = document.getElementById("genderInput").value;
+            let lat = document.getElementById("latInput").value;
+            let lon = document.getElementById("lonInput").value;
+            let date = document.getElementById("dateInput").value;
+            let month = document.getElementById("monthInput").value;
+            let workEx = document.getElementById("workExInput").value;
+            let hobin = document.getElementById("hobinInput").value;
+            let hobout = document.getElementById("hoboutInput").value;
+            let firstName = document.getElementById("firstNameInput").value;
+            let lastName = document.getElementById("lastNameInput").value;
+
+            // ตรวจสอบความถูกต้องของข้อมูลที่รับมา และปรับแก้หรือเติมข้อมูลเริ่มต้นได้ตามต้องการ
+
+            // ... (ตรวจสอบและปรับแก้ข้อมูลเริ่มต้นตามความต้องการ)
+
+            // เรียกฟังก์ชันใน sketch.js เพื่อสร้างศิลปะ
+            generateArtWithInput(age, name, gender, lat, lon, date, month, workEx, hobin, hobout, firstName, lastName);
+        }
+
+        function displayGeneratedImage(imageDataUrl) {
+            let artImage = document.getElementById("artImage");
+            artImage.src = imageDataUrl;
+        }
+    </script>
+</body>
+</html>
