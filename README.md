@@ -32,7 +32,6 @@ We have exciting plans for the future of this project, including:
 - Enhancing the data art generation algorithms to produce even more stunning visual results.
 - Expanding the input options to encourage more creativity and personalization.
 - Integrating social media sharing functionality to promote user engagement.
-- Collaborating with the Computer Science Engineering department to explore further applications of this innovative technology.
 
 Stay tuned for updates as we continue to develop and improve this unique data art generator.
 
