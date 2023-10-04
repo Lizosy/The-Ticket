@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative Art</title>
+    <style>
+        body {
+            font-family: "Roboto";
+            margin: 0;
+            padding: 0;
+        }
+
+        .back {
+            background: linear-gradient(120deg, rgb(100, 57, 134), rgb(152, 174, 213));
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .registration-form {
+            width: 400px;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            top: 15%;
+            background: transparent;
+        }
+
+        header {
+            position: relative;
+            z-index: 4;
+            background: white;
+            padding: 20px 40px;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .input-section.folded + .folded,
+        .input-section.fold-up {
+            animation: foldUp 0.4s ease-in-out;
+        }
+
+        .success {
+            /* Existing styles for the success section */
+            animation: slideDown 0.4s ease-in-out;
+        }
+
+        @keyframes foldUp {
+            0% {
+                width: 100%;
+                margin-top: 0;
+            }
+            100% {
+                width: 95%;
+                margin-top: -10px;
+            }
+        }
+
+        @keyframes slideDown {
+            0% {
+                margin-top: -75px;
+            }
+            100% {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="back">
+        <div class="registration-form">
+            <header>
+                <h1>Sign Up</h1>
+                <p>Fill in all informations</p>
+            </header>
+            <form>
+                <div class="input-section">
+                    <input type="text" id="ageInput" placeholder="Age (number)">
+                </div>
+                <div class="input-section">
+                    <input type="text" id="nameInput" placeholder="Name (text)">
+                </div>
+                <div class="input-section">
+                    <select id="genderInput">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div class="input-section">
+                    <input type="text" id="latInput" placeholder="Latitude (number)">
+                </div>
+                <div class="input-section">
+                    <input type="text" id="lonInput" placeholder="Longitude (number)">
+                </div>
+                <div class="input-section">
+                    <input type="text" id="dateInput" placeholder="Start Angle (Date)">
+                </div>
+                <div class="input-section">
+                    <input type="text" id="monthInput" placeholder="End Angle (Month)">
+                </div>
+                <div class="input-section">
+                    <input type="text" id="workExInput" placeholder="Work Experience (number)">
+                </div>
+                <div class="input-section">
+                    <input type="text" id="hobinInput" placeholder="Hobin (number)">
+                </div>
+                <div class="input-section">
+                    <input type="text" id="hoboutInput" placeholder="Hobout (number)">
+                </div>
+                <div class="input-section">
+                    <input type="text" id="firstNameInput" placeholder="First Name (text)">
+                </div>
+                <div class="input-section">
+                    <input type="text" id="lastNameInput" placeholder="Last Name (text)">
+                </div>
+                <div class="animated-button">
+                    <button onclick="generateArt()">Generate Art</button>
+                </div>
+                <div class="success">
+                    <p>ACCOUNT CREATED</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+    <script src="sketch.js"></script>
+    <script>
+        let motif1;
+        let motif2;
+
+        function preload() {
+            motif1 = loadShape("loc.svg");
+            motif2 = loadShape("workexp.svg");
+        }
+
+        function generateArt() {
+            let age = document.getElementById("ageInput").value;
+            let name = document.getElementById("nameInput").value;
+            let gender = document.getElementById("genderInput").value;
+            let lat = document.getElementById("latInput").value;
+            let lon = document.getElementById("lonInput").value;
+            let date = document.getElementById("dateInput").value;
+            let month = document.getElementById("monthInput").value;
+            let workEx = document.getElementById("workExInput").value;
+            let hobin = document.getElementById("hobinInput").value;
+            let hobout = document.getElementById("hoboutInput").value;
+            let firstName = document.getElementById("firstNameInput").value;
+            let lastName = document.getElementById("lastNameInput").value;
+
+            // ตรวจสอบความถูกต้องของข้อมูลที่รับมา และปรับแก้หรือเติมข้อมูลเริ่มต้นได้ตามต้องการ
+
+            // ... (ตรวจสอบและปรับแก้ข้อมูลเริ่มต้นตามความต้องการ)
+
+            // เรียกฟังก์ชันใน sketch.js เพื่อสร้างศิลปะ
+            generateArtWithInput(age, name, gender, lat, lon, date, month, workEx, hobin, hobout, firstName, lastName);
+        }
+
+        function displayGeneratedImage(imageDataUrl) {
+            let artImage = document.getElementById("artImage");
+            artImage.src = imageDataUrl;
+        }
+    </script>
+</body>
+</html>
