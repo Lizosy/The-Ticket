@@ -147,5 +147,33 @@ body {
     letter-spacing: 2px;
     font-size: 18px;
     width: 100%;
+    right: 50%;
     text-align: center;
+}
+
+.reset-button {
+    background-color: #d4d4ff; /* Change the background color */
+    color: #9999f8; /* Change the text color */
+    font-weight: 100;
+    border: 0;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Add color and transform transition */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the button content */
+    border-radius: 15px; /* Add border-radius to match other buttons */
+    padding: 20px; /* Adjust the padding */
+}
+
+.reset-button i {
+    font-size: 30px; /* Adjust the font size as needed */
+    margin-right: 10px; /* Add margin to separate the icon from text */
+}
+
+.reset-button:hover {
+    color: #ffffff;
+    background-color: #9999f8;
+    transform: scale(1.1);
+    font-weight: 100;
+    border-radius: 15px;
 }
