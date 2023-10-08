@@ -1,4 +1,20 @@
 $(document).ready(function() {
+  // Initialize the current section index
+  var currentSection = 0;
+
+  // Function to show the next section
+  function showNextSection() {
+    $('.input-section').eq(currentSection).addClass("fold-up");
+    currentSection++;
+    $('.input-section').eq(currentSection).removeClass("folded");
+  }
+
+  // Function to show the success message
+  function showSuccessMessage() {
+    $('.success').css("marginTop", "20px");
+    $('.reset-button-section').css('display', 'block');
+  }
+
   // Event handler for the email input
   $('.email').on("input", function() {
     if ($(this).val()) {
@@ -8,16 +24,9 @@ $(document).ready(function() {
     }
   });
 
-  // Add cursor pointer on hover for next buttons
-  $('.next-button').hover(function() {
-    $(this).css('cursor', 'pointer');
-  });
-
   // Event handler for the email next button
   $('.next-button.email').click(function() {
-    console.log("Something");
-    $('.email-section').addClass("fold-up");
-    $('.fullname-section').removeClass("folded"); // Transition to Full Name section
+    showNextSection();
   });
 
   // Event handler for the full name input
@@ -31,9 +40,7 @@ $(document).ready(function() {
 
   // Event handler for the full name next button
   $('.next-button.fullname').click(function() {
-    console.log("Something");
-    $('.fullname-section').addClass("fold-up");
-    $('.password-section').removeClass("folded"); // Transition to Password section
+    showNextSection();
   });
 
   // Event handler for the password input
@@ -47,9 +54,7 @@ $(document).ready(function() {
 
   // Event handler for the password next button
   $('.next-button.password').click(function() {
-    console.log("Something");
-    $('.password-section').addClass("fold-up");
-    $('.repeat-password-section').removeClass("folded"); // Transition to Repeat Password section
+    showNextSection();
   });
 
   // Event handler for the repeat password input
@@ -65,26 +70,7 @@ $(document).ready(function() {
 
   // Event handler for the repeat password next button
   $('.next-button.repeat-password').click(function() {
-    console.log("Something");
-    $('.repeat-password-section').addClass("fold-up");
-    $('.success').css("marginTop", 0);
-  });
-
-  // Event handler for the reset button
-  $('.reset-button').click(function() {
-    // Clear form fields and reset button states
-    $('.email').val('');
-    $('.password').val('');
-    $('.repeat-password').val('');
-    $('.fullname').val('');
-    $('.animated-button .next-button').removeClass('next');
-    $('.success').css("marginTop", "20px"); // Reset Success section
-  });
-
-  // Event handler for the refresh icon within the repeat password section
-  $('.icon-repeat-lock i').click(function() {
-    // Perform the same reset behavior as clicking the "fa fa-paper-plane" icon
-    $('.repeat-password-section').addClass('fold-up');
-    $('.success').css('marginTop', 0);
+    showNextSection();
+    showSuccessMessage();
   });
 });
