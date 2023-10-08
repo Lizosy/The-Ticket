@@ -25,6 +25,10 @@ To use this web application:
 3. Customize the `generateArtWithInput()` function to manipulate data art generation based on your preferences.
 4. Run the application by opening the `index.html` file in a web browser.
 
+## Dependencies
+- [FontAwesome](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css)
+- [jQuery](https://code.jquery.com/jquery-3.6.0.min.js)
+
 ## Future Development
 
 We have exciting plans for the future of this project, including:
