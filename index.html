@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic 3D Wallpaper with Letter A</title>
+    <title>Dynamic 3D Wallpaper with Letter A and Image</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <style>
         body, html {
@@ -32,6 +32,16 @@ var objects = [];
 var numberOfObjects = 10;
 var maxObjects = 100; // Maximum number of objects before old ones get removed
 
+let img;
+
+function preload() {
+    // Load your background image
+    img = loadImage('lizsory.png', function(loadedImage) {
+        loadedImage.resize(100, 100); // Resize the loaded image to 200x200 pixels
+        img = loadedImage; // Assign the resized image to the img variable
+    });
+}
+
 function setup() {
     createCanvas(windowWidth, windowHeight, WEBGL);
     background(255);
@@ -40,7 +50,7 @@ function setup() {
 }
 
 function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
+    resizeCanvas(windowWidth / 2, windowHeight / 2); // ปรับขนาด canvas ให้มีความกว้างและความสูงครึ่งหนึ่งของหน้าต่างเบราว์เซอร์
 }
 
 function draw() {
@@ -50,13 +60,16 @@ function draw() {
     rotation += 0.005;
     translate(-x / 2, -y / 2, -z / 2);
     
+    // Display the background image
+    push();
+    texture(img);
+    plane(windowWidth / 10, windowHeight / 10); // ปรับขนาดรูปภาพให้เล็กลง
+    pop();
+    
     for (var i = 0; i < objects.length; i++) {
         objects[i].render();
     }
-
-    // Draw the 3D text "A"
-    drawLetterA();
-
+    
     if (frameCount % 72000 == 0) {
         generateObjects();
     }
@@ -64,31 +77,6 @@ function draw() {
     if (objects.length > maxObjects) {
         objects.splice(0, numberOfObjects);
     }
-}
-
-function drawLetterA() {
-    // Define the points of letter A
-    const baseHeight = windowHeight / 2;
-    const baseWidth = windowWidth / 2;
-    const ATop = createVector(baseWidth, baseHeight - 200);
-    const ABottomLeft = createVector(baseWidth - 50, baseHeight + 100);
-    const ABottomRight = createVector(baseWidth + 50, baseHeight + 100);
-    const ACenter = createVector(baseWidth, baseHeight);
-    
-    // Draw the edges of the letter A
-    stroke(0);
-    beginShape(LINES);
-    vertex(ATop.x, ATop.y, ATop.z);
-    vertex(ABottomLeft.x, ABottomLeft.y, ABottomLeft.z);
-    vertex(ATop.x, ATop.y, ATop.z);
-    vertex(ABottomRight.x, ABottomRight.y, ABottomRight.z);
-    endShape();
-    
-    // Draw the crossbar of the letter A
-    beginShape(LINES);
-    vertex(ABottomLeft.x + 20, ACenter.y, ABottomLeft.z);
-    vertex(ABottomRight.x - 20, ACenter.y, ABottomRight.z);
-    endShape();
 }
 
 function Line() {
@@ -174,7 +162,6 @@ function generateObjects() {
         }
     }
 }
-
 
 // Ensure the setup function is called once the DOM is loaded
 document.addEventListener('DOMContentLoaded', (event) => {
