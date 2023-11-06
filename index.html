@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic 3D Wallpaper with Letter A</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+var x = 400;
+var y = 400;
+var z = 400;
+
+var rotation = 0;
+
+var objects = [];
+var numberOfObjects = 10;
+var maxObjects = 100; // Maximum number of objects before old ones get removed
+
+function setup() {
+    createCanvas(windowWidth, windowHeight, WEBGL);
+    background(255);
+    generateObjects();
+    textFont('Helvetica'); // Set the default font
+}
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+}
+
+function draw() {
+    background(255);
+    rotateX(rotation);
+    rotateZ(rotation);
+    rotation += 0.005;
+    translate(-x / 2, -y / 2, -z / 2);
+    
+    for (var i = 0; i < objects.length; i++) {
+        objects[i].render();
+    }
+
+    // Draw the 3D text "A"
+    drawLetterA();
+
+    if (frameCount % 72000 == 0) {
+        generateObjects();
+    }
+
+    if (objects.length > maxObjects) {
+        objects.splice(0, numberOfObjects);
+    }
+}
+
+function drawLetterA() {
+    // Define the points of letter A
+    const baseHeight = windowHeight / 2;
+    const baseWidth = windowWidth / 2;
+    const ATop = createVector(baseWidth, baseHeight - 200);
+    const ABottomLeft = createVector(baseWidth - 50, baseHeight + 100);
+    const ABottomRight = createVector(baseWidth + 50, baseHeight + 100);
+    const ACenter = createVector(baseWidth, baseHeight);
+    
+    // Draw the edges of the letter A
+    stroke(0);
+    beginShape(LINES);
+    vertex(ATop.x, ATop.y, ATop.z);
+    vertex(ABottomLeft.x, ABottomLeft.y, ABottomLeft.z);
+    vertex(ATop.x, ATop.y, ATop.z);
+    vertex(ABottomRight.x, ABottomRight.y, ABottomRight.z);
+    endShape();
+    
+    // Draw the crossbar of the letter A
+    beginShape(LINES);
+    vertex(ABottomLeft.x + 20, ACenter.y, ABottomLeft.z);
+    vertex(ABottomRight.x - 20, ACenter.y, ABottomRight.z);
+    endShape();
+}
+
+function Line() {
+    this.x1 = random(x);
+    this.y1 = random(y);
+    this.z1 = random(z);
+
+    this.x2 = random(x);
+    this.y2 = random(y);
+    this.z2 = random(z);
+
+    this.render = function () {
+        stroke(0);
+        beginShape();
+        vertex(this.x1, this.y1, this.z1);
+        vertex(this.x2, this.y2, this.z2);
+        endShape();
+    }
+}
+
+function Triangle() {
+    this.x1 = random(x);
+    this.y1 = random(y);
+    this.z1 = random(z);
+
+    this.x2 = random(x);
+    this.y2 = random(y);
+    this.z2 = random(z);
+
+    this.x3 = random(x);
+    this.y3 = random(y);
+    this.z3 = random(z);
+
+    this.render = function () {
+        stroke(0);
+        noFill();
+        beginShape();
+        vertex(this.x1, this.y1, this.z1);
+        vertex(this.x2, this.y2, this.z2);
+        vertex(this.x3, this.y3, this.z3);
+        endShape(CLOSE);
+    }
+}
+
+function Rectangle() {
+    this.x1 = random(x);
+    this.y1 = random(y);
+    this.z1 = random(z);
+
+    this.x2 = random(x);
+    this.y2 = random(y);
+    this.z2 = random(z);
+
+    this.x3 = random(x);
+    this.y3 = random(y);
+    this.z3 = random(z);
+
+    this.x4 = random(x);
+    this.y4 = random(y);
+    this.z4 = random(z);
+
+    this.render = function () {
+        stroke(0);
+        noFill();
+        beginShape();
+        vertex(this.x1, this.y1, this.z1);
+        vertex(this.x2, this.y2, this.z2);
+        vertex(this.x3, this.y3, this.z3);
+        vertex(this.x4, this.y4, this.z4);
+        endShape(CLOSE);
+    }
+}
+
+function generateObjects() {
+    for (var i = 0; i < numberOfObjects; i++) {
+        var randomized = random(1);
+        if (randomized < 0.33) {
+            objects.push(new Line());
+        } else if (randomized < 0.66) {
+            objects.push(new Triangle());
+        } else {
+            objects.push(new Rectangle());
+        }
+    }
+}
+
+
+// Ensure the setup function is called once the DOM is loaded
+document.addEventListener('DOMContentLoaded', (event) => {
+    setup(); // Call the setup function
+});
+</script>
+</body>
+</html>
