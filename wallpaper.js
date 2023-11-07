@@ -30,6 +30,7 @@ function windowResized() {
 }
 
 function draw() {
+    scale(3);
     background(255);
     rotateX(rotation);
     rotateZ(rotation);
@@ -39,26 +40,12 @@ function draw() {
     // Display the background image
     push();
     texture(img);
-    plane(windowWidth / 20, windowHeight / 20); // ปรับขนาดรูปภาพให้เล็กลง
+    translate(200, 200, 200);
+    plane(windowWidth / 10, windowHeight / 10); // ปรับขนาดรูปภาพให้เล็กลง
     pop();
     
     for (var i = 0; i < objects.length; i++) {
         objects[i].render();
-    }
-    for (let i = 0; i < additionalImages.length; i++) {
-        push(); // Start a new drawing state
-        let tx = random(-windowWidth / 2, windowWidth / 2);
-        let ty = random(-windowHeight / 2, windowHeight / 2);
-        let tz = random(-500, 500);
-        translate(tx, ty, tz); // Translate to random location
-
-        let angle = random(TWO_PI); // Random rotation angle
-        rotateY(angle); // Rotate around the y-axis
-        
-        // Apply texture and draw plane with image
-        texture(additionalImages[i]);
-        plane(100, 100); // You can adjust the size if necessary
-        pop(); // Restore original state
     }
     
     if (frameCount % 72000 == 0) {
