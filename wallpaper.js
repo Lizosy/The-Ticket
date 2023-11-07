@@ -5,7 +5,7 @@ var z = 400;
 var rotation = 0;
 
 var objects = [];
-var numberOfObjects = 10;
+var numberOfObjects = 90
 var maxObjects = 100; // Maximum number of objects before old ones get removed
 
 let img;
@@ -48,7 +48,7 @@ function draw() {
         objects[i].render();
     }
     
-    if (frameCount % 72000 == 0) {
+    if (frameCount % 72 == 0) {
         generateObjects();
     }
 
