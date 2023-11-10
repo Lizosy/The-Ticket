@@ -48,7 +48,7 @@ function draw() {
         objects[i].render();
     }
     
-    if (frameCount % 72 == 0) {
+    if (frameCount % 7200 == 0) {
         generateObjects();
     }
 
